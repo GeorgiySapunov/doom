@@ -1,0 +1,8 @@
+# File of custom
+custom.el
+
+# Configuration is literal, so i need config.org
+config.el
+
+# selectric mode folder
+selectric-mode

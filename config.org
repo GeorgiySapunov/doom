@@ -1,0 +1,102 @@
+#+title: Doom Emacs Config
+
+* Table Of Contents :toc:
+- [[#general][General]]
+  - [[#opacity][Opacity]]
+  - [[#credentials][Credentials]]
+  - [[#auto-save][Auto save]]
+  - [[#color-scheme][Color scheme]]
+  - [[#font-management][Font management]]
+  - [[#modeline][Modeline]]
+  - [[#fix-right-side-of-modeline][Fix right side of modeline]]
+- [[#development][Development]]
+  - [[#tree-sitter][tree-sitter]]
+  - [[#headers][Headers]]
+  - [[#title][Title]]
+
+* General
+** Opacity
+Make Doome Emacs opaque again
+
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(alpha . 100))
+#+end_src
+
+** Credentials
+Set credentials for snippets and so on
+
+#+begin_src emacs-lisp
+(setq user-full-name "Georgiy Sapunov"
+      user-mail-address "GeorgiySapunov@yandex.ru")
+#+end_src
+
+** Auto save
+Enable auto-save
+
+#+begin_src emacs-lisp
+(setq auto-save-default t)
+#+end_src
+
+** Color scheme
+I prefer nord theme, also when you have font with cursive italics, it's nice when comments and keywords are italic
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-nord
+      doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+#+end_src
+
+#+begin_src emacs-lisp
+(custom-set-faces! '(font-lock-keyword-face :slant italic)
+                   '(font-lock-comment-face :slant italic))
+#+end_src
+
+** Font management
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "monospace" :size 20)
+      doom-variable-pitch-font (font-spec :family "Overpass Nerd Font" :size 20))
+#+end_src
+
+** Modeline
+Doom-modeline and doom-dashboard are both good, but i don't like some defaults
+Let's set modeline icon:
+
+#+begin_src emacs-lisp
+(setq doom-modeline-major-mode-color-icon t
+      doom-modeline-buffer-state-icon t)
+#+end_src
+
+** Fix right side of modeline
+
+#+begin_src emacs-lisp
+(setq all-the-icons-scale-factor 1.0)
+#+end_src
+
+* Development
+** tree-sitter
+Tree-sitter provides fast syntax highlighting:
+
+#+begin_src emacs-lisp
+(global-tree-sitter-mode)
+#+end_src
+
+** Headers
+Make headers bigger (code +stolen+ borrowed from [[https://gitlab.com/dwt1/dotfiles][DT's config]])
+
+#+begin_src emacs-lisp
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0)))))
+#+end_src
+
+** Title
+This custom faces are specifically for Org mode, so i separated them
+
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(org-document-title :weight bold :height 180)
+  '(org-document-info :slant italic :height 120))
+#+end_src
